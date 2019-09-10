@@ -10,8 +10,16 @@
 //         ISBN: 0-07-096617-6
 
 F0 = 1; m = 1;
-mu1 = 0.01; mu2 = 1; mu3 = 4;
+mu1 = 0.05; mu2 = 0.2; mu3 = 0.4;
 omega = 0:0.05:10;
 omega_0 = 4.56;
 
-A1 = (F0/m) / sqrt((omega_0^2 - omega.^2)^2 + 4*mu1^2*omega.^2);
+A1 = (F0/m)./sqrt((omega_0^2 - omega^2)^2 + 4*mu1^2*omega^2);
+A2 = (F0/m)./sqrt((omega_0^2 - omega^2)^2 + 4*mu2^2*omega^2);
+A3 = (F0/m)./sqrt((omega_0^2 - omega^2)^2 + 4*mu3^2*omega^2);
+
+plot(omega,A1,'g', omega,A2,'b', omega,A3,'r');
+title('Amplitude resonance (F0=1, m=1)');
+xlabel("omega")
+ylabel("A")
+legend(['mu = 0.05';'mu = 0.2';'mu = 0.4'],[4]);
